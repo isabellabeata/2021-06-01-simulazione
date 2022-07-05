@@ -30,7 +30,7 @@ public class FXMLController {
     private Button btnCreaGrafo; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbGeni"
-    private ComboBox<?> cmbGeni; // Value injected by FXMLLoader
+    private ComboBox<Genes> cmbGeni; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnGeniAdiacenti"
     private Button btnGeniAdiacenti; // Value injected by FXMLLoader
@@ -47,12 +47,25 @@ public class FXMLController {
     @FXML
     void doCreaGrafo(ActionEvent event) {
     	
+    	this.txtResult.clear();
+    	this.model.creaGrafo();
+    	
+    	this.txtResult.setText(this.model.nVertici());
+    	this.txtResult.appendText(this.model.nArchi());
+    	
+    	this.cmbGeni.getItems().addAll(this.model.popolaCmb());
 
     }
 
     @FXML
     void doGeniAdiacenti(ActionEvent event) {
-
+    	
+    	this.txtResult.clear();
+    	if(this.cmbGeni!=null) {
+    		this.txtResult.setText(this.model.adiacenti(this.cmbGeni.getValue()));
+    	}else {
+    		this.txtResult.setText("Selezionare un gene dalla tendina prima di calcolare gli adiacenti!");
+    	}
     	
     }
 

@@ -5,7 +5,16 @@ public class Genes {
 	private String geneId;
 	private String essential;
 	private int chromosome;
+	private double pesoPt1;
 	
+	public double getPesoPt1() {
+		return pesoPt1;
+	}
+
+	public void setPesoPt1(double pesoPt1) {
+		this.pesoPt1 = pesoPt1;
+	}
+
 	public Genes(String geneId, String essential, int chromosome) {
 		super();
 		this.geneId = geneId;
