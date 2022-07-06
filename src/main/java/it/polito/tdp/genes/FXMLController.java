@@ -5,6 +5,7 @@
 package it.polito.tdp.genes;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.genes.model.Genes;
@@ -71,6 +72,22 @@ public class FXMLController {
 
     @FXML
     void doSimula(ActionEvent event) {
+    	this.txtResult.clear();
+    	Genes start= this.cmbGeni.getValue();
+    	try {
+    	int n= Integer.parseInt(this.txtIng.getText());
+    	
+    	Map<Genes, Integer> studiati= model.simulaIngegneri(start, n);
+    	if(studiati==null) {
+    		this.txtResult.setText("Il gene selezionato è isolato");
+    	}else {
+    		for(Genes g: studiati.keySet()) {
+    			this.txtResult.appendText(""+g+" "+studiati.get(g)+"\n");
+    		}
+    	}
+    	}catch(NumberFormatException e) {
+    		this.txtResult.setText("Inserire un numero intero per gli ingegneri!");
+    	}
 
     }
 

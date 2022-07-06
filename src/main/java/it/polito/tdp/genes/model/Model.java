@@ -3,6 +3,7 @@ package it.polito.tdp.genes.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
@@ -78,6 +79,16 @@ public class Model {
 			s+= gg+" "+gg.getPesoPt1()+"\n";
 		}
 		return s;
+	}
+	
+	public Map<Genes, Integer> simulaIngegneri(Genes start, int nIng){
+		try {
+		Simulator sim= new Simulator(start, nIng, this.grafo);
+		sim.run();
+		return sim.getGeniStudiati();
+		} catch(IllegalArgumentException e) {
+			return null;
+		}
 	}
 	
 }
